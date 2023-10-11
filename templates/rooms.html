@@ -1,0 +1,48 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>>Hotel Rooms</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <script src="/static/js/bootstrap.js"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="container-fluid">
+
+            <section class="row ">
+                {% for room in rooms %}
+                <!-- one room -->
+                <!-- create outermost card -->
+                <div class="card shadow p-2">
+                    <div class="row">
+                        <div class="col-md-4"> <img
+                                src="/static/images/{{room[6]}}"
+                                class="img-fluid"
+                                height="250" alt="">
+                        </div>
+                        <!-- second column -->
+                        <div class="col-md-6">
+                            <a href="#" style="text-decoration: none;">{{room[1]}}</a>
+                            <b class="fa fa-star text-warning "></b>
+                            <b class="fa fa-star text-warning "></b>
+                            <b class="fa fa-star text-warning "></b>
+                            <b class="fa fa-star text-warning "></b>
+                            <p>{{room[2]}}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" style="text-decoration: none;color:
+                                black;">Reviews 7676</a>
+                            <a href="" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+
+    </body>
+</html>

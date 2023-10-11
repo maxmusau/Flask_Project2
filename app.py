@@ -40,6 +40,73 @@ def Upload_room():
         return render_template("upload_room.html",message="Room uploaded successfully")
     else:  
         return render_template("upload_room.html")
+
+
+# CRUD operation
+# C- create-save records-POST
+# R-read- select, retrieve,view-GET
+# U- update-edit-PUT
+# D-delete-remove-DELETE
+@app.route("/getrooms", methods=['GET','POST'])
+def Get_rooms():
+    # define the connection
+    sql='select * from rooms'
+    # cursor function-to execute the sql
+    cursor=connection.cursor()
+    # execute the sql query
+    cursor.execute(sql)
+    # fetch the records
+    records=cursor.fetchall()
+    # check if there's records saved in the database
+    if cursor.rowcount ==0:
+        return render_template("rooms.html",error="No rooms available")
+    else:
+        print(records)
+        return render_template("rooms.html",rooms=records)
+        # return jsonify(records)
     
+        
+# create a table called users
+# columns = username, email, phone, pasword, confirm password
+# 
+# signup route
+@app.route("/signup",methods=['GET','POST'])
+def Signup():
+    if request.method =='POST':
+        # TODO
+         # get the data from the form
+         username=request.form['username']
+         email=request.form['email']
+         phone=request.form['phone']
+         password=request.form['password']
+         confirm_password=request.form['confirm_password']
+        #  connection  already defined
+        # input validation
+         if not username or not email or not phone or not password or not confirm_password:
+            return render_template("signup.html",error="Please fill in all the records")
+         if password != confirm_password:
+             return render_template("signup.html",error="Password do not match confirm password")
+         elif " " in username:
+             return render_template("signup.html",error="Username must be one word")
+         elif '@' not in email:
+             return render_template("signup.html",error="Email must have @")
+         elif len(password) <4:
+             return render_template("signup.html",error="Password must have 4 digits")
+         else:
+             sql_save='insert into users (username,email,phone,password) values(%s,%s,%s,%s)'
+             values=(username,email,phone,password)
+            #  curcor functio
+             cursor_save=connection.cursor()
+            #  execute the sql query
+             cursor_save.execute(sql_save,values)
+            # commit
+             connection.commit()
+             return render_template("signup.html",message="Signup Successful")
+             
+    else:
+        return render_template("signup.html")
+    
+
+
 # run theh app
 app.run(debug=True)

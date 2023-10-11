@@ -1,0 +1,54 @@
+ <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Signup/Signin</title>
+        <link rel="stylesheet" href="/static/css/signup.css">
+    </head>
+    <body>
+
+        <div class="form-structor">
+            <div class="signup">
+                <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+                <h2 style="color:green;">{{message}}</h2>
+                <h2 style="color:red;">{{error}}</h2>
+                <form action="/signup" method="post">
+                    <div class="form-holder">
+                        <input type="text" class="input" placeholder="Username"
+                            name="username"/>
+                        <input type="email" class="input" placeholder="Email"
+                            name="email"/>
+                        <input type="tel" class="input" placeholder="Phone"
+                            name="phone"/>
+                        <input type="password" class="input"
+                            placeholder="Password" name="password"
+                            />
+                        <input type="password" class="input"
+                            placeholder="Confirm password"
+                            name="confirm_password"
+                            />
+                    </div>
+                    <button type="submit" class="submit-btn">Sign up</button>
+                </form>
+            </div>
+            <div class="login slide-up">
+                <div class="center">
+                    <h2 class="form-title" id="login"><span>or</span>Log in</h2>
+                    <h2 style="color:green;">{{message}}</h2>
+                    <h2 style="color:red;">{{error}}</h2>
+                    <form action="/login" method="post">
+                        <div class="form-holder">
+                            <input type="text" class="input"
+                                placeholder="Username" name="username"/>
+                            <input type="password" class="input"
+                                placeholder="Password" name="password"/>
+                        </div>
+                        <button type="submit" class="submit-btn">Log in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="/static/js/signup.js"></script>
+    </body>
+</html>
