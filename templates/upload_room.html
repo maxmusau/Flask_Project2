@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Registration</title>
+        <style>
+body {
+Arial, sans-serif;
+background-color: #f4f4f4;
+0;
+padding: 0;
+}
+
+.container {
+margin: 0 auto;
+max-width: 400px;
+100px auto;
+ 
+
+background-color: #fff;
+padding: 40px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+text-align: center;
+30px;
+}
+
+label {
+display: block;
+10px;
+}
+
+input[type="text"],
+input[type="password"] {
+width: 100%;
+padding: 10px;
+20px;
+border-radius: 4px;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+input[type="email"] {
+width: 100%;
+padding: 10px;
+20px;
+border-radius: 4px;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+
+input[type="submit"] {
+width: 100%;
+padding: 10px;
+background-color: #4CAF50;
+color: #fff;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+input[type="submit"]:hover {
+background-color: #45a049;
+}
+</style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Upload Hotel room details</h1>
+            <h2 style="color:green;">{{message}}</h2>
+            <h2 style="color:red;">{{error}}</h2>
+            <!-- crud operation -->
+            <form action="/upload_room" method="post"
+                enctype="multipart/form-data">
+                <label for="room_name">Room Name:</label>
+                <input type="text" id="room_name" name="room_name">
+                <label for="room_desc">Room Description:</label>
+                <input type="text" id="room_desc" name="room_desc">
+                <label for="cost">Charges Per Night:</label>
+                <input type="text" id="cost" name="cost">
+
+                <label for="availability">Availability:</label>
+                <input type="text" id="availability" name="availability">
+
+                <label for="square_feet">Square Feet:</label>
+                <input type="text" id="square_feet" name="square_feet">
+
+                <label for="image_url">Upload Image:</label>
+                <input type="file" id="image_url" name="image_url">
+                <br>
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+    </body>
+</html>
