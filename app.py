@@ -61,7 +61,7 @@ def Get_rooms():
     if cursor.rowcount ==0:
         return render_template("rooms.html",error="No rooms available")
     else:
-        print(records)
+        print(records)  
         return render_template("rooms.html",rooms=records)
         # return jsonify(records)
     
@@ -93,6 +93,13 @@ def Signup():
          elif len(password) <4:
              return render_template("signup.html",error="Password must have 4 digits")
          else:
+            #  check if the user exists
+             sql_check_user='select * from users where username=%s'
+             cursor_check_user=connection.cursor()
+             cursor_check_user.execute(sql_check_user, username)
+             if cursor_check_user.rowcount==1:
+                 return render_template("signup.html",error="Username already exists")
+             
              sql_save='insert into users (username,email,phone,password) values(%s,%s,%s,%s)'
              values=(username,email,phone,password)
             #  curcor functio
@@ -106,6 +113,7 @@ def Signup():
     else:
         return render_template("signup.html")
     
+# signin
 
 
 # run theh app
