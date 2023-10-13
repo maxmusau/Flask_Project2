@@ -11,7 +11,11 @@
     </head>
     <body>
         <div class="container-fluid">
-
+            <br><br>
+            <div class="text-end text-dark">
+                <p>Logged in as {{session['email']}}</p> /
+                <a href="/logout">Logout</a>
+            </div>
             <section class="row ">
                 {% for room in rooms %}
                 <!-- one room -->
@@ -35,7 +39,7 @@
                         <div class="col-md-2">
                             <a href="#" style="text-decoration: none;color:
                                 black;">Reviews 7676</a>
-                            <a href="" class="btn btn-primary">Book Now</a>
+                            <a href="/single_room/{{room[0]}}" class="btn btn-primary">Show Prices</a>
                         </div>
                     </div>
 
