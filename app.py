@@ -10,7 +10,7 @@ connection=pymysql.connect(host="localhost",user="root",database="bookings_db",p
 
 @app.route("/")
 def Main():
-    return "Welcome to our application. Type the route name in the address bar"
+    return render_template("index.html")
 
 # create the room-upload route
 @app.route("/upload_room",methods=['GET','POST'])

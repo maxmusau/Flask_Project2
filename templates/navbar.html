@@ -1,29 +1,46 @@
 <!-- copy and paste the navbar done in bootstrap project -->
-<nav class="navbar navbar-expand-md navbar-light bg-light " >
-    <!-- brand -->
-    <div class="navbar-brand">
-        <img src="images/capital_marketsd.png"  height="80" width="140" alt="">
-    </div>
-    <button type="button" data-bs-toggle="collapse" data-bs-target="#mylinks" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="mylinks"> 
-        <!-- navlinks here -->
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="" class="nav-link active">Home</a></li>
-            <li class="nav-item"><a href="" class="nav-link ">About Us</a></li>
-            <li class="nav-item"><a href="" class="nav-link ">Services</a></li>
-            <li class="nav-item dropdown" ><a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Product  Categories 
-                
-            </a>
-                <div class="dropdown-menu">
-                    <a href="" class="dropdown-item">Laptops Category</a>
-                    <a href="" class="dropdown-item">Smartphones Category</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <!-- search form  -->
-    <form class="d-flex"> 
-        <input type="text" class="form-control" placeholder="Search">
-        <input type="submit" class="btn btn-success">
-    </form>
-</nav>
+<div class="bg">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary ">
+        <!-- brand -->
+        <div class="navbar-brand">
+            <img src="/static/images/logo.jpg" height="80" width="140" alt="">
+        </div>
+        <button type="button" data-bs-toggle="collapse"
+            data-bs-target="#mylinks"
+            class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mylinks">
+            <!-- navlinks here -->
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="" class="nav-link ">About Us</a></li>
+                <li class="nav-item"><a href="" class="nav-link ">Hotel Rooms</a></li>
+                <li class="nav-item dropdown"><a href="" class="nav-link
+                        dropdown-toggle" data-bs-toggle="dropdown">Categories
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="" class="dropdown-item">Villas</a>
+                        <a href="" class="dropdown-item">
+                            Apartments
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- search form  -->
+        <!-- <form class="d-flex">
+            <input type="text" class="form-control" placeholder="Search">
+            <input type="submit" class="btn btn-success">
+        </form> -->
+       {% if 'key' not in session %}
+       <a href="/signup" class="text-dark ">Register</a> &nbsp;&nbsp;&nbsp;
+       <a href="/login" class="text-dark me-4">Signin</a>
+
+       {% else %}
+       <b class="text-dark ">{{session['key']}}</b> &nbsp;&nbsp;&nbsp;
+       <a href="/logout" class="text-dark me-4">logout</a>
+        {% endif %}
+
+    </nav>
+
+</div>
