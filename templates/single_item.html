@@ -9,16 +9,74 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div class="contaner">
+        <div class="container">
             <h2 class="text-dark">{{data[1]}}</h2>
             <section class="row">
                 <div class="col-md-2">
                     <div class="card shadow text-center p-3">
-                        <b class="fa fa-wifi">&nbsp;&nbsp;&nbsp; Wifi</b>
+                        <b class="fa fa-wifi">&nbsp;&nbsp;&nbsp; Free <br> Wifi</b>
                     </div>
                 </div>
-
+                <div class="col-md-2">
+                    <div class="card shadow text-center p-3">
+                        <b class="fa fa-clock-o"> 24-h-front-desk</b>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card shadow text-center p-3">
+                        <b class="fa fa-building">&nbsp;&nbsp;&nbsp; City <br>
+                            View</b>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card shadow text-center p-3">
+                        <b class="fa fa-lock">&nbsp;&nbsp;&nbsp; Luggage Storage</b>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card shadow text-center p-3">
+                        <b class="fa fa-bath">&nbsp;&nbsp;&nbsp; Private
+                            Bathrooms</b>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card shadow text-center p-3">
+                        <b class="fa fa-car">&nbsp;&nbsp;&nbsp; Free <br>
+                            parking</b>
+                    </div>
+                </div>
             </section>
+
+            <!-- section 2-->
+            <br><br>
+            <section class="row">
+                <div class="col-md-8">
+                    <img src="/static/images/{{data[6]}}" class="w-75 mx-auto"
+                        alt="">
+                    <br><br> <b>location : <span class="text-success">Westlands,
+                            Nairobi</span></b><br>
+                    <i>Availability <span class="text-info">{{data[4]}}</span></i>
+                    <b>Room size : <span class="text-warning ">{{data[5]}}</span></b>
+                    <h3 class="text-success">Description</h3>
+                    <p>{{data[2]}}</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow bg-info p-3">
+                        <p> Property highlights</p>
+                        <p>Top location: Highly rated by recent guests (8.4)</p>
+                        <h3>Breakfast info</h3>
+                        <p>Continental, Buffet, Breakfast to go</p>
+                        <p>Private parking at the hotel</p>
+                        <h3>Loyal customers</h3>
+                        <p>끖
+                            There are more repeat guests here than most other
+                            properties.</p>
+                        <a href="#" class="btn btn-primary p-2">Book</a>
+
+                    </div>
+                </div>
+            </section>
+
 
         </div>
 
