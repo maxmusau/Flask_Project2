@@ -11,10 +11,152 @@
             .bg{
                 background-color: blue;
             }
+            .col3{
+                position: absolute;
+            }
+            .caption{
+                position: relative;
+                padding: 20px;
+                color: white;
+            }
+            .pos-rel{
+                position: relative;
+                top: 200px;
+            }
+            .pos-rel1{
+                height: 350px;
+               
+            }
+            a{
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
         {% include 'navbar.html' %}
+        <br><br>
+        <!-- sections -->
+        <div class="container">
+
+
+            <h4>Offers</h4>
+            <p>Promotions, deals and special offers for you</p>
+            <section class="row">
+                <div class="col-md-4">
+                    <h4>Take your longest Holiday yet</h4>
+                    <p>Browse properties offering long-term stays, many at
+                        reduced monthly rates</p>
+                    <button class="btn btn-primary p-2">Find a stay</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="/static/images/col2.jpeg" class="img-fluid
+                        rounded" alt="" style="height: 200px;">
+                </div>
+                <div class="col-md-6">
+                    <img src="/static/images/col3.jpeg" class="img-fluid rounded
+                        col3" style="height: 200px;width: 40%;" alt="">
+                    <div class="caption">
+                        <p><b>Save 15% with Ltae Escape Deals</b></p>
+                        <p>Explore thousands of destinations <br> worldwide and
+                            save 15% or more</p>
+                        <button class="btn btn-primary">Find late Escape Deals</button>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- property type section -->
+            <h4>Browse by property type</h4>
+            <section class="row">
+                <div class="col-md-3 rounded">
+                    <div class="card shadow ">
+                        <img src="/static/images/hotels.jpeg" class="img-fluid
+                            w-100 rounded ">
+                        <h4>Hotels</h4>
+
+                    </div>
+                </div>
+                <div class="col-md-3 rounded">
+                    <div class="card shadow ">
+                        <img src="/static/images/apartments.jpeg"
+                            class="img-fluid w-100 rounded ">
+                        <h4>Aprtments</h4>
+
+                    </div>
+                </div>
+                <div class="col-md-3 rounded">
+                    <div class="card shadow ">
+                        <img src="/static/images/resorts.jpeg" class="img-fluid
+                            w-100 rounded ">
+                        <h4>Resorts</h4>
+
+                    </div>
+
+                </div>
+                <div class="col-md-3 rounded">
+                    <div class="card shadow ">
+                        <img src="/static/images/villas.jpeg" class="img-fluid
+                            w-100 rounded ">
+                        <h4>Villas</h4>
+
+                    </div>
+                </div>
+
+            </section>
+            <br>
+
+            <h4>Trending Destinations</h4>
+            <a href="/getrooms">
+                <section class="row pos-rel1">
+                    <div class="col-md-6 ">
+                        <div class="card shadow">
+
+                            <img src="/static/images/nairobi.jpg"
+                                class="img-fluid rounded col3 w-100" alt="">
+                            <p class="caption">Nairobi</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="card shadow">
+                            <img src="/static/images/mombasa.jpg"
+                                class="img-fluid rounded col3" alt="">
+                            <p class="caption">Mombasa Kenya</p>
+                        </div>
+                    </div>
+
+                </section>
+            </a>
+            <br>
+            <a href="/getrooms">
+
+                <section class="row pos-rel">
+                    <div class="col-md-4 ">
+                        <div class="card shadow">
+                            <img src="/static/images/diani.jpg" class="img-fluid
+                                rounded col3" alt="">
+                            <p class="caption">Diani Kenya</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="card shadow">
+                            <img src="/static/images/dubai.jpg" class="img-fluid
+                                rounded col3" alt="">
+                            <p class="caption">Dubai United Arab Emirates </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow">
+                            <img src="/static/images/instanbul.jpg"
+                                class="img-fluid rounded col3" alt="">
+                            <p class="caption">Instabul Turkey</p>
+                        </div>
+                    </div>
+
+                </section>
+            </a>
+
+        </div>
+
 
     </body>
 </html>

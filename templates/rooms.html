@@ -8,45 +8,121 @@
         <script src="/static/js/bootstrap.js"></script>
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- styles for sidebar -->
+        <style>
+                /* Sidebar styling */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: relative;
+            top: 0;
+            left: 0;
+            background-color: #82a0eb;
+            padding: 20px;
+            color: #fff;
+            max-height: 700px;
+        }
+       
+        /* Checkboxes and Radio buttons styling */
+        .sidebar label {
+            display: block;
+            margin-bottom: 10px;
+        }
+       
+        .sidebar input[type="checkbox"],
+        .sidebar input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Text styling */
+        .sidebar p {
+            margin-top: 20px;
+        }
+            </style>
     </head>
     <body>
         <div class="container-fluid">
-            <br><br>
-            <div class="text-end text-dark">
-                <p>Logged in as {{session['email']}}</p> /
-                <a href="/logout">Logout</a>
-            </div>
-            <section class="row ">
-                {% for room in rooms %}
-                <!-- one room -->
-                <!-- create outermost card -->
-                <div class="card shadow p-2">
-                    <div class="row">
-                        <div class="col-md-4"> <img
-                                src="/static/images/{{room[6]}}"
-                                class="img-fluid"
-                                height="250" alt="">
-                        </div>
-                        <!-- second column -->
-                        <div class="col-md-6">
-                            <a href="#" style="text-decoration: none;">{{room[1]}}</a>
-                            <b class="fa fa-star text-warning "></b>
-                            <b class="fa fa-star text-warning "></b>
-                            <b class="fa fa-star text-warning "></b>
-                            <b class="fa fa-star text-warning "></b>
-                            <p>{{room[2]}}</p>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" style="text-decoration: none;color:
-                                black;">Reviews 7676</a>
-                            <a href="/single_room/{{room[0]}}" class="btn btn-primary">Show Prices</a>
-                        </div>
-                    </div>
 
+            {% include 'navbar.html' %}
+            <br><br>
+            <section class="row ">
+                <!-- sidebar code -->
+
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <h2>Hotel Booking</h2>
+
+                        <h3>Location</h3>
+                        <label><input type="radio" name="location" value="city">
+                            City</label>
+                        <label><input type="radio" name="location"
+                                value="beach"> Beach</label>
+
+                        <h3>Price Range</h3>
+                        <label><input type="checkbox" name="price"
+                                value="budget"> Budget</label>
+                        <label><input type="checkbox" name="price"
+                                value="midrange"> Mid-Range</label>
+                        <label><input type="checkbox" name="price"
+                                value="luxury"> Luxury</label>
+
+                        <h3>Amenities</h3>
+                        <label><input type="checkbox" name="amenities"
+                                value="pool"> Pool</label>
+                        <label><input type="checkbox" name="amenities"
+                                value="spa"> Spa</label>
+                        <label><input type="checkbox" name="amenities"
+                                value="gym"> Gym</label>
+
+                        <h3>Additional Options</h3>
+                        <label><input type="checkbox" name="options"
+                                value="parking"> Free Parking</label>
+                        <label><input type="checkbox" name="options"
+                                value="breakfast"> Free Breakfast</label>
+
+                        <p>Search Results:</p>
+                        <button class="btn btn-primary" type="button">Search</button>
+                    </div>
+                </div>
+
+                <!--  create the second column/division-->
+                <div class="col-md-9">
+                    {% for room in rooms %}
+                    <!-- one room -->
+                    <!-- create outermost card -->
+                    <div class="card shadow p-2">
+                        <div class="row">
+                            <div class="col-md-4"> <img
+                                    src="/static/images/{{room[6]}}"
+                                    class="img-fluid"
+                                    height="250" alt="">
+                            </div>
+                            <!-- second column -->
+                            <div class="col-md-6">
+                                <a href="#" style="text-decoration: none;">{{room[1]}}</a>
+                                <b class="fa fa-star text-warning "></b>
+                                <b class="fa fa-star text-warning "></b>
+                                <b class="fa fa-star text-warning "></b>
+                                <b class="fa fa-star text-warning "></b>
+                                <p>{{room[2]}}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" style="text-decoration: none;color:
+                                    black;">Reviews 7676</a>
+                                <a href="/single_room/{{room[0]}}" class="btn
+                                    btn-primary">Show Prices</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
                 </div>
             </section>
-            {% endfor %}
+
+
         </div>
+
+
 
     </body>
 </html>
