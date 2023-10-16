@@ -74,15 +74,48 @@
                         <p>끖
                             There are more repeat guests here than most other
                             properties.</p>
-                        <button  type="button" data-bs-target="#mpesamodal"  data-bs-toggle="modal" class="btn btn-primary p-2">Book</button>
-
+                        <button type="button" data-bs-target="#mpesamodal"
+                            data-bs-toggle="modal" class="btn btn-primary p-2">Book</button>
                     </div>
                 </div>
             </section>
         </div>
 
         <!-- modal for mpesa form -->
-        
+        <div class="modal fade" id="mpesamodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="text-center">Provide your phone number below</h4>
+                        <button class="btn btn-close" type="button"
+                            data-bs-dismiss="modal"></button>
+                    </div>
+                    <!-- body -->
+                    <div class="modal-body">
+                        <form action="/mpesa_payment" class="mx-auto w-75"
+                            method="post">
+                            <input type="tel" class="form-control"
+                                placeholder="enter phone number 2547***"
+                                name="phone" id="">
+                            <br>
+                            <input type="number" class="form-control"
+                                placeholder="enter AMount" name="amount" id="">
+                            <br>
+                            <input type="submit" value="Confirm Booking"
+                                class="btn btn-success">
+
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Cancel</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
 
 
 

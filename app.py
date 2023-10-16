@@ -220,8 +220,8 @@ def mpesa_payment():
         amount = str(request.form['amount'])
         # GENERATING THE ACCESS TOKEN
         # create an account on safaricom daraja
-        consumer_key = "u5fdN03MHa698AzeW3rZWzMFlwkPFHGj"
-        consumer_secret = "vaoNoGPXaS4qelsP"
+        consumer_key = "GTWADFxIpUfDoNikNGqq1C3023evM6UH"
+        consumer_secret = "amFbAoUByPV2rM5A"
 
         api_URL = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"  # AUTH URL
         r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
