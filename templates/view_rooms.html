@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/bootstrap.js"></script>
+</head>
+<body>
+{% include 'admin_dashboard.html'%}
+
+      <!-- table -->
+      <table class="table">
+        <tr>
+            <th>Serial No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Price Per night</th>
+            <th>Availability</th>
+            <th>Operation</th>
+        </tr>
+        {% for room in rooms %}
+        <tr>
+            <td>{{room[0]}}</td>
+            <td><b style="text-transform: capitalize;"> {{room[1]}}</b></td>
+            <td><img height="150" width="200"
+                    src="/static/images/{{room[6]}}" alt=""></td>
+            <td>{{room[3]}}</td>
+            <td>{{room[4]}}</td>
+            <td><a href="/delete{{room[0]}}
+            " class="btn btn-danger p-1">Delete</a></td>
+        </tr>
+        {% endfor%}
+    </table>
+</body>
+</html>

@@ -74,6 +74,27 @@
                         <p>끖
                             There are more repeat guests here than most other
                             properties.</p>
+                            <!-- cart form -->
+                            <legend>
+                     
+                                <section>
+               
+                                            <form action="/add" method="post" class="form-control col-sm-1" ><br><br><br>   <p class="text-muted">Enter Quantity</p><br>
+                                                 <input type="hidden" name="code" value="{{data[0]}}"/>
+                                                 <input type="number" name="quantity" placeholder="Qtty"  required><br><br>
+                                                <h5 class="text-warning">Price :&nbspKSH &nbsp{{data[3]}}</h5><br>
+                                                 <button type="submit" class="btn btn-danger">ADD TO CART</button>
+                                                <br><br>
+               
+                                                <br>
+                                            </form>
+               
+                                    <br>
+               
+                                </section>
+                       </legend>
+
+                       
                         <button type="button" data-bs-target="#mpesamodal"
                             data-bs-toggle="modal" class="btn btn-primary p-2">Book</button>
                     </div>

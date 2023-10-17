@@ -10,9 +10,9 @@ background-color: #f4f4f4;
 padding: 0;
 }
 
-.container {
+.container1 {
 margin: 0 auto;
-max-width: 400px;
+max-width: 450px;
 100px auto;
  
 
@@ -64,15 +64,13 @@ input[type="submit"]:hover {
 background-color: #45a049;
 }
 </style>
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <script src="/static/js/bootstrap.js"></script>
     </head>
     <body>
-        <div class="container">
+        {% include 'admin_dashboard.html'%}
+        <div class="container1">
             <h1>Upload Hotel room details</h1>
-
-            <div style="text-align: right;">
-                <b>logged in as {{session['key_admin']}}</b>
-                <a href="/logout_admin">Logout</a>
-            </div>
 
             <h2 style="color:green;">{{message}}</h2>
             <h2 style="color:red;">{{error}}</h2>

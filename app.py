@@ -66,7 +66,7 @@ def Get_rooms():
     if cursor.rowcount ==0:
         return render_template("rooms.html",error="No rooms available")
     else:
-        print(records)  
+        # print(records)  
         return render_template("rooms.html",rooms=records)
         # return jsonify(records)
     
@@ -269,5 +269,169 @@ def mpesa_payment():
     
 
 
+# assignment
+# 1. create the admin_dashboard.html file
+# The dashboard contains a navbar with (view  rooms and upload room links)
+# inside view rooms link(html file), create a table to display the room info (name,price per night, availability and operation)
+
+# view product
+@app.route("/view_rooms", methods=['GET','POST'])
+def View_products():
+    # define the connection
+    sql='select * from rooms'
+    # cursor function-to execute the sql
+    cursor=connection.cursor()
+    # execute the sql query
+    cursor.execute(sql)
+    # fetch the records
+    records=cursor.fetchall()
+    # check if there's records saved in the database
+    if cursor.rowcount ==0:
+        return render_template("view_rooms.html",error="No rooms available")
+    else:
+        print(records)  
+        return render_template("view_rooms.html",rooms=records)
+        # return jsonify(records)
+
+@app.route("/admin_dashboard")
+def Admin_Dashboard():
+    return render_template("admin_dashboard.html")
+# delete 
+@app.route("/delete<room_id>",methods=['GET','POST'])
+def Delete_room(room_id):
+    # defiene the sql for deleting records
+    sql='delete from rooms where room_id=%s'
+    # cursor
+    cursor=connection.cursor()
+    # execute the sql
+    cursor.execute(sql,room_id)
+    # commit the connection
+    connection.commit()
+    return redirect("/view_rooms")
+    
+
+# import functions from functions.py file
+from functions import *
+from order_gen import *
+# add to cart route
+@app.route('/add', methods=['POST'])
+def add_product_to_cart():
+        _quantity = int(request.form['quantity'])
+        _code = request.form['code']
+        # validate the received values
+        if _quantity and _code and request.method == 'POST':
+            cursor = connection.cursor(pymysql.cursors.DictCursor)
+            cursor.execute("SELECT * FROM rooms WHERE room_id= %s", _code)
+            row = cursor.fetchone()
+            #An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together
+
+            itemArray = {str(row['room_id']): {'room_name': row['room_name'], 'room_id': row['room_id'], 'quantity': _quantity, 'cost': row['cost'],
+                              'image_url': row['image_url'], 'total_price': int(_quantity) * int(row['cost']),
+                                             'Availability': row['availability']}}
+            # print((itemArray))
+
+
+            all_total_price = 0
+            all_total_quantity = 0
+            session.modified = True
+            #if there is an item already
+            if 'cart_item' in session:
+                #check if the product you are adding is already there
+                print("The test cart",type(row['room_id']) )
+                print("session hf", session['cart_item'])
+                if str(row['room_id']) in session['cart_item']:
+                    print("reached here 1")
+
+
+                    for key, value in session['cart_item'].items():
+                        #check if product is there
+                        if str(row['room_id']) == key:
+                            print("reached here 2")
+                            #take the old quantity  which is in session with cart item and key quantity
+                            old_quantity = int(session['cart_item'][key]['quantity'])
+                            #add it with new quantity to get the total quantity and make it a session
+                            total_quantity = old_quantity + _quantity
+                            session['cart_item'][key]['quantity'] = total_quantity
+                            #now find the new price with the new total quantity and add it to the session
+                            session['cart_item'][key]['total_price'] = total_quantity *  row['cost']
+
+                else:
+                    print("reached here 3")
+                    #a new product added in the cart.Merge the previous to have a new cart item with two products
+                    session['cart_item'] = array_merge(session['cart_item'], itemArray)
+
+
+                for key, value in session['cart_item'].items():
+                    individual_quantity = session['cart_item'][key]['quantity']
+                    individual_price = session['cart_item'][key]['total_price']
+                    all_total_quantity = all_total_quantity +individual_quantity
+                    all_total_price = int(all_total_price) + int(individual_price)
+            else:
+                #if the cart is empty you add the whole item array
+                session['cart_item'] = itemArray
+                all_total_quantity = all_total_quantity + _quantity
+                #get total price by multiplyin the cost and the quantity
+                all_total_price = all_total_price + _quantity* float(row['cost'])
+
+
+            #add total quantity and total price to a session
+            session['all_total_quantity'] = all_total_quantity
+            session['all_total_price'] = all_total_price
+            return redirect(url_for('.cart'))
+        else:
+            return 'Error while adding item to cart'
+       
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
+
+@app.route('/customer_checkout')
+def customer_checkout():
+    if check_customer():
+            return redirect('/cart')
+    else:
+        return redirect('/login')
+@app.route('/empty')
+def empty_cart():
+    try:
+        if 'cart_item' in session or 'all_total_quantity' in session or 'all_total_price' in session:
+            session.pop('cart_item', None)
+            session.pop('all_total_quantity', None)
+            session.pop('all_total_price', None)
+            return redirect(url_for('.cart'))
+        else:
+            return redirect(url_for('.cart'))
+
+    except Exception as e:
+        print(e)
+@app.route('/delete/<string:code>')
+def delete_product(code):
+    try:
+        all_total_price = 0
+        all_total_quantity = 0
+        session.modified = True
+        for item in session['cart_item'].items():
+            if item[0] == code:
+                session['cart_item'].pop(item[0], None)
+                if 'cart_item' in session:
+                    for key, value in session['cart_item'].items():
+                        individual_quantity = int(session['cart_item'][key]['quantity'])
+                        individual_price = float(session['cart_item'][key]['total_price'])
+                        all_total_quantity = all_total_quantity + individual_quantity
+                        all_total_price = all_total_price + individual_price
+                break
+
+        if all_total_quantity == 0:
+            session.clear()
+        else:
+            session['all_total_quantity'] = all_total_quantity
+            session['all_total_price'] = all_total_price
+
+        # return redirect('/')
+        return redirect(url_for('.cart'))
+    except Exception as e:
+        print(e)
+
+
 # run theh app
-app.run(debug=True)
+app.run(debug=True,port=8000)
